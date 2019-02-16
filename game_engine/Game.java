@@ -12,6 +12,7 @@ public class Game extends JFrame implements Runnable {
     private static final long serialVersionUID = 1L;
     public int mapWidth = 15;
     public int mapHeight = 15;
+    public ArrayList<Texture> textures;
     private Thread thread;
     private boolean running;
     private BufferedImage image;
@@ -42,7 +43,12 @@ public class Game extends JFrame implements Runnable {
     public Game() {
         thread = new Thread(this);
         image = new BufferedImage(640, 480, BufferedImage.TYPE_INT_RGB);
-		pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
+        pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
+        textures = new ArrayList<Texture>();
+		textures.add(Texture.wood);
+		textures.add(Texture.brick);
+		textures.add(Texture.bluestone);
+		textures.add(Texture.stone);
         setSize(640, 480);
         setResizable(false);
         setTitle("Sample 3D Game");
