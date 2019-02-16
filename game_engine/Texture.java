@@ -14,7 +14,7 @@ public class Texture {
     private String filePath;
     
     public Texture(String file_path, int size){
-        filePath = file_Path;
+        filePath = file_path;
         TEXTURE_SIZE = size;
         pixels = new int [TEXTURE_SIZE * TEXTURE_SIZE];
         load();

@@ -14,6 +14,7 @@ public class Game extends JFrame implements Runnable {
     public int mapHeight = 15;
     public ArrayList<Texture> textures;
     public Camera camera;
+    public Screen screen;
     private Thread thread;
     private boolean running;
     private BufferedImage image;
@@ -46,11 +47,12 @@ public class Game extends JFrame implements Runnable {
         image = new BufferedImage(640, 480, BufferedImage.TYPE_INT_RGB);
         pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
         textures = new ArrayList<Texture>();
-		textures.add(Texture.wood);
-		textures.add(Texture.brick);
-		textures.add(Texture.bluestone);
-        textures.add(Texture.stone);
+		textures.add(Texture.yellow);
+		textures.add(Texture.blue);
+		textures.add(Texture.red);
+        textures.add(Texture.orange);
         camera = new Camera(4.5, 4.5, 1, 0, 0, -.66);
+        screen = new Screen(map, mapWidth, mapHeight, textures, 640, 480);
         addKeyListener(camera);
         setSize(640, 480);
         setResizable(false);
@@ -97,6 +99,7 @@ public class Game extends JFrame implements Runnable {
             delta = delta + ((now - lastTime) / ns);
             lastTime = now;
             while(delta >= 1){
+                screen.update(camera, pixels);
                 camera.update(map);
                 delta--;
             }
