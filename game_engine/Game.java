@@ -13,6 +13,7 @@ public class Game extends JFrame implements Runnable {
     public int mapWidth = 15;
     public int mapHeight = 15;
     public ArrayList<Texture> textures;
+    public Camera camera;
     private Thread thread;
     private boolean running;
     private BufferedImage image;
@@ -48,7 +49,9 @@ public class Game extends JFrame implements Runnable {
 		textures.add(Texture.wood);
 		textures.add(Texture.brick);
 		textures.add(Texture.bluestone);
-		textures.add(Texture.stone);
+        textures.add(Texture.stone);
+        camera = new Camera(4.5, 4.5, 1, 0, 0, -.66);
+        addKeyListener(camera);
         setSize(640, 480);
         setResizable(false);
         setTitle("Sample 3D Game");
@@ -94,6 +97,7 @@ public class Game extends JFrame implements Runnable {
             delta = delta + ((now - lastTime) / ns);
             lastTime = now;
             while(delta >= 1){
+                camera.update(map);
                 delta--;
             }
             render();
