@@ -1,0 +1,9 @@
+version: '3.5'
+
+services:
+  game_engine:
+    build: 
+        context: .
+        dockerfile: Dockerfile
+    volumes:
+      - .:/gameEngine-java-workspace
